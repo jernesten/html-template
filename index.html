@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Navbar</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var current = location.pathname.split("/").pop(); // "index.html", etc.
+
+      $('nav li a').each(function() {
+        var $this = $(this);
+        var href = $this.attr('href');
+
+        if (href === "#" || href === "") return;
+
+        if (href === current) {
+          $this.addClass('active');
+
+          // Si es un subelemento, marca también el padre
+          var $parentLi = $this.closest('ul.dropdown').closest('li');
+          $parentLi.children('a').addClass('active');
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+  <nav>
+    <div class="brand">
+      <a class="brand-text" href="#"><h1>FlyDrive</h1></a>
+    </div>
+    <div class="hamburger">
+      <input type="checkbox" id="sidebar-active">
+      <label for="sidebar-active" class="open-sidebar-button">
+        <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
+      </label>
+      <label id="overlay" for="sidebar-active"></label>
+    
+      <div class="links-container">
+        <label for="sidebar-active" class="close-sidebar-button">
+          <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+        </label>
+
+        <ul class="menu-list">
+            <li><a class="home" href="index.html">Home</a> </li>
+            <li>
+              <a href="#">Files</a>
+              <ul class="dropdown">
+                  <li><a href="sub1.html">Sub-1</a></li>
+                  <li><a href="sub2.html">Sub-2</a></li>
+                  <li><a href="sub3.html">Sub-3</a></li>
+              </ul>
+            </li>
+            <li><a href="party.html">Party Mode</a></li>
+            <li><a href="config.html">Config</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</body>
+  <div class="full-with">
+    <div class="container" style="margin-top: 0;">
+      <h2>Dashboard</h2>
+    </div>
+  </div>
+  
+</body>
+</html>
